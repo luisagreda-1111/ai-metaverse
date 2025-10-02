@@ -1,0 +1,47 @@
+
+> node-js-express-login-example@1.0.0 start
+> node server.js
+
+API key does not start with "SG.".
+Server is running on port 3001.
+Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='users';
+Executing (default): CREATE TABLE IF NOT EXISTS `users` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `firstname` VARCHAR(255), `lastname` VARCHAR(255), `username` VARCHAR(255), `email` VARCHAR(255), `password` VARCHAR(255), `companyname` VARCHAR(255), `url` VARCHAR(255), `firstaddress` VARCHAR(255), `secondaddress` VARCHAR(255), `country` VARCHAR(255), `zipcode` VARCHAR(255), `phone` VARCHAR(255), `expiredTime` VARCHAR(255) DEFAULT '0', `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+Executing (default): PRAGMA INDEX_LIST(`users`)
+Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='roles';
+Executing (default): CREATE TABLE IF NOT EXISTS `roles` (`id` INTEGER PRIMARY KEY, `name` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+Executing (default): PRAGMA INDEX_LIST(`roles`)
+Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='docs';
+Executing (default): CREATE TABLE IF NOT EXISTS `docs` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `basename` VARCHAR(255), `description` VARCHAR(255), `filepath` VARCHAR(255), `filename` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+Executing (default): PRAGMA INDEX_LIST(`docs`)
+Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='webs';
+Executing (default): CREATE TABLE IF NOT EXISTS `webs` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `path` VARCHAR(255), `index` INTEGER, `basename` VARCHAR(255), `description` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+Executing (default): PRAGMA INDEX_LIST(`webs`)
+Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='user_roles';
+Executing (default): CREATE TABLE IF NOT EXISTS `user_roles` (`createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `roleId` INTEGER NOT NULL REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `userId` INTEGER NOT NULL REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, PRIMARY KEY (`roleId`, `userId`));
+Executing (default): PRAGMA INDEX_LIST(`user_roles`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_user_roles_1`)
+Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='doc_roles';
+Executing (default): CREATE TABLE IF NOT EXISTS `doc_roles` (`createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `docId` INTEGER NOT NULL REFERENCES `docs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `roleId` INTEGER NOT NULL REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, PRIMARY KEY (`docId`, `roleId`));
+Executing (default): PRAGMA INDEX_LIST(`doc_roles`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_doc_roles_1`)
+Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='web_roles';
+Executing (default): CREATE TABLE IF NOT EXISTS `web_roles` (`createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `webId` INTEGER NOT NULL REFERENCES `webs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `roleId` INTEGER NOT NULL REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, PRIMARY KEY (`webId`, `roleId`));
+Executing (default): PRAGMA INDEX_LIST(`web_roles`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_web_roles_1`)
+Database synchronized
+Executing (e62e513a-bd78-4b6a-a7e0-803987f0d779): BEGIN DEFERRED TRANSACTION;
+Executing (e62e513a-bd78-4b6a-a7e0-803987f0d779): SELECT `id`, `name`, `createdAt`, `updatedAt` FROM `roles` AS `roles` WHERE `roles`.`id` = 1;
+Executing (e62e513a-bd78-4b6a-a7e0-803987f0d779): INSERT INTO `roles` (`id`,`name`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4);
+Executing (e62e513a-bd78-4b6a-a7e0-803987f0d779): COMMIT;
+Executing (23ee8e64-8868-46f3-8739-3be85b33a1c6): BEGIN DEFERRED TRANSACTION;
+Executing (23ee8e64-8868-46f3-8739-3be85b33a1c6): SELECT `id`, `name`, `createdAt`, `updatedAt` FROM `roles` AS `roles` WHERE `roles`.`id` = 2;
+Executing (23ee8e64-8868-46f3-8739-3be85b33a1c6): INSERT INTO `roles` (`id`,`name`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4);
+Executing (23ee8e64-8868-46f3-8739-3be85b33a1c6): COMMIT;
+Executing (7d245a7b-f761-48cf-bccc-8e8fb55f9f9a): BEGIN DEFERRED TRANSACTION;
+Executing (7d245a7b-f761-48cf-bccc-8e8fb55f9f9a): SELECT `id`, `name`, `createdAt`, `updatedAt` FROM `roles` AS `roles` WHERE `roles`.`id` = 3;
+Executing (7d245a7b-f761-48cf-bccc-8e8fb55f9f9a): INSERT INTO `roles` (`id`,`name`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4);
+Executing (7d245a7b-f761-48cf-bccc-8e8fb55f9f9a): COMMIT;
+Executing (5bbca4ee-9392-48e8-a28b-c32080dc3593): BEGIN DEFERRED TRANSACTION;
+Executing (5bbca4ee-9392-48e8-a28b-c32080dc3593): SELECT `id`, `name`, `createdAt`, `updatedAt` FROM `roles` AS `roles` WHERE `roles`.`id` = 4;
+Executing (5bbca4ee-9392-48e8-a28b-c32080dc3593): INSERT INTO `roles` (`id`,`name`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4);
+Executing (5bbca4ee-9392-48e8-a28b-c32080dc3593): COMMIT;
